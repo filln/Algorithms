@@ -1,7 +1,7 @@
 // Algorithms.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
-/*A project to study algorithms. */
+/*Project to study algorithms and data structures.*/
 
 
 #include <iostream>
