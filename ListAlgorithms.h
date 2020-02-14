@@ -72,4 +72,6 @@ void ListAlgorithms<T>::CreateMyForwardList()
 		tmpPointerToList = pointerToList;
 	}
 	tmpPointerToList->next = nullptr;
+
+	/*Need delete after new.*/
 }
