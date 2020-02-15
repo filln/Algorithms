@@ -5,6 +5,7 @@
 #include <list>
 #include <forward_list>
 #include <memory>
+#include <iostream>
 
 using namespace std;
 
@@ -16,6 +17,7 @@ class ListAlgorithms
 {
 public:
 	ListAlgorithms();
+	~ListAlgorithms();
 
 	struct MyForwardList
 	{
@@ -23,12 +25,19 @@ public:
 		MyForwardList* next;
 	};
 
+	struct MyForwardListSharedPtr 
+	{
+		int value;
+		shared_ptr<MyForwardListSharedPtr> next;
+	};
+
 private:
 
 	list<int> STLList = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 	forward_list<int> STLForwardList = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
-	MyForwardList* beginMyForwardList;
+	MyForwardList* beginMyForwardList = nullptr;
+	shared_ptr<MyForwardListSharedPtr> beginMyForwardListSharedPtr;
 	size_t sizeOfMyForwardList = 10;
 
 public:
@@ -37,29 +46,35 @@ public:
 private:
 
 	void CreateMyForwardList();
+	void CreateMyForwardListSharedPtr();
+	void DeleteMyForwardList();
 
 public:
 
 	inline const list<int>& GetSTLList() const { return STLList; }
 	inline const forward_list<int>& GetSTLForwardList() const { return STLForwardList; }
-	inline MyForwardList* GetBeginMyForwardList() const { return beginMyForwardList; }
+	MyForwardList* GetBeginMyForwardList();
+	shared_ptr<MyForwardListSharedPtr> GetBeginMyForwardListSharedPtr();
 	inline const size_t GetSizeOfMyForwardList() const { return sizeOfMyForwardList; }
 
 
 };
 
-
 template <class T>
 ListAlgorithms<T>::ListAlgorithms()
 {
-	CreateMyForwardList();
+}
+
+template <class T>
+ListAlgorithms<T>::~ListAlgorithms()
+{
+	DeleteMyForwardList();
 }
 
 template <class T>
 void ListAlgorithms<T>::CreateMyForwardList()
 {
-	MyForwardList* tmpPointerToList;
-	tmpPointerToList = new MyForwardList;
+	MyForwardList* tmpPointerToList = new MyForwardList;
 	tmpPointerToList->value = 0;
 	beginMyForwardList = tmpPointerToList;
 
@@ -72,6 +87,52 @@ void ListAlgorithms<T>::CreateMyForwardList()
 		tmpPointerToList = pointerToList;
 	}
 	tmpPointerToList->next = nullptr;
+}
 
-	/*Need delete after new.*/
+template <class T>
+void ListAlgorithms<T>::CreateMyForwardListSharedPtr()
+{
+	auto tmpPointerList = make_shared<MyForwardListSharedPtr>();
+	tmpPointerList->value = 0;
+	beginMyForwardListSharedPtr = tmpPointerList;
+	for (size_t i = 1; i < sizeOfMyForwardList; i++)
+	{
+		auto pointerToList = make_shared<MyForwardListSharedPtr>();
+		pointerToList->value = (int)i;
+
+		tmpPointerList->next = pointerToList;
+		tmpPointerList = pointerToList;
+	}
+	tmpPointerList->next = nullptr;
+}
+
+template <class T>
+typename ListAlgorithms<T>::MyForwardList* ListAlgorithms<T>::GetBeginMyForwardList()
+{
+	CreateMyForwardList();
+	return beginMyForwardList;
+}
+
+template <class T>
+shared_ptr<typename ListAlgorithms<T>::MyForwardListSharedPtr> ListAlgorithms<T>::GetBeginMyForwardListSharedPtr()
+{
+	CreateMyForwardListSharedPtr();
+	return beginMyForwardListSharedPtr;
+}
+
+template <class T>
+void ListAlgorithms<T>::DeleteMyForwardList()
+{
+	size_t count = 0;
+	while (beginMyForwardList)
+	{
+		MyForwardList* tmpPointer = beginMyForwardList->next;
+		delete beginMyForwardList;
+		beginMyForwardList = tmpPointer;
+		count++;
+	}
+	if (count)
+	{
+		cout << endl << "Delete " << count << " nodes in ~ListAlgorithms()" << endl;
+	}
 }

@@ -20,7 +20,8 @@ int main()
 
 	/*List algorithms, variables and containers.*/
 	ListAlgorithms<int> ListAlgorithmsObject;
-	auto beginMyForwardList = ListAlgorithmsObject.GetBeginMyForwardList();
+//	auto beginMyForwardList = ListAlgorithmsObject.GetBeginMyForwardList();
+	auto beginMyForwardList = ListAlgorithmsObject.GetBeginMyForwardListSharedPtr();
 	while (beginMyForwardList)
 	{
 		cout << beginMyForwardList->value;
