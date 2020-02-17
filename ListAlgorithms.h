@@ -6,6 +6,7 @@
 #include <forward_list>
 #include <memory>
 #include <iostream>
+#include "Containers.h"
 
 using namespace std;
 
@@ -16,123 +17,64 @@ template <class T>
 class ListAlgorithms
 {
 public:
-	ListAlgorithms();
-	~ListAlgorithms();
-
-	struct MyForwardList
-	{
-		int value;
-		MyForwardList* next;
-	};
-
-	struct MyForwardListSharedPtr 
-	{
-		int value;
-		shared_ptr<MyForwardListSharedPtr> next;
-	};
-
-private:
-
-	list<int> STLList = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-	forward_list<int> STLForwardList = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-
-	MyForwardList* beginMyForwardList = nullptr;
-	shared_ptr<MyForwardListSharedPtr> beginMyForwardListSharedPtr;
-	size_t sizeOfMyForwardList = 10;
-
-public:
+	/*Constructors and destructors.*/
 
 
 private:
+	/*Private variables.*/
 
-	void CreateMyForwardList();
-	void CreateMyForwardListSharedPtr();
-	void DeleteMyForwardList();
 
 public:
+	/*Public variables.*/
 
-	inline const list<int>& GetSTLList() const { return STLList; }
-	inline const forward_list<int>& GetSTLForwardList() const { return STLForwardList; }
-	MyForwardList* GetBeginMyForwardList();
-	shared_ptr<MyForwardListSharedPtr> GetBeginMyForwardListSharedPtr();
-	inline const size_t GetSizeOfMyForwardList() const { return sizeOfMyForwardList; }
+
+private:
+	/*Private methods.*/
+
+
+public:
+	/*Public methods.*/
+
+	int Sum(shared_ptr<Containers::MyForwardListSharedPtr> beginMyForwardListSharedPtr);
+	int SumRecur(shared_ptr<Containers::MyForwardListSharedPtr> beginMyForwardListSharedPtr);
 
 
 };
 
 template <class T>
-ListAlgorithms<T>::ListAlgorithms()
+int ListAlgorithms<T>::SumRecur(shared_ptr<Containers::MyForwardListSharedPtr> beginMyForwardListSharedPtr)
 {
-}
-
-template <class T>
-ListAlgorithms<T>::~ListAlgorithms()
-{
-	DeleteMyForwardList();
-}
-
-template <class T>
-void ListAlgorithms<T>::CreateMyForwardList()
-{
-	MyForwardList* tmpPointerToList = new MyForwardList;
-	tmpPointerToList->value = 0;
-	beginMyForwardList = tmpPointerToList;
-
-	for (size_t i = 1; i < sizeOfMyForwardList; i++)
+	if (!beginMyForwardListSharedPtr)
 	{
-		MyForwardList* pointerToList = new MyForwardList;
-		pointerToList->value = (int)i;
-
-		tmpPointerToList->next = pointerToList;
-		tmpPointerToList = pointerToList;
+		return -1;
 	}
-	tmpPointerToList->next = nullptr;
-}
 
-template <class T>
-void ListAlgorithms<T>::CreateMyForwardListSharedPtr()
-{
-	auto tmpPointerList = make_shared<MyForwardListSharedPtr>();
-	tmpPointerList->value = 0;
-	beginMyForwardListSharedPtr = tmpPointerList;
-	for (size_t i = 1; i < sizeOfMyForwardList; i++)
+	auto beginTmp = beginMyForwardListSharedPtr;
+	int sum = beginTmp->value;
+
+	if (beginTmp->next)
 	{
-		auto pointerToList = make_shared<MyForwardListSharedPtr>();
-		pointerToList->value = (int)i;
-
-		tmpPointerList->next = pointerToList;
-		tmpPointerList = pointerToList;
+		sum += SumRecur(beginTmp->next);
 	}
-	tmpPointerList->next = nullptr;
+	return sum;
 }
 
 template <class T>
-typename ListAlgorithms<T>::MyForwardList* ListAlgorithms<T>::GetBeginMyForwardList()
+int ListAlgorithms<T>::Sum(shared_ptr<Containers::MyForwardListSharedPtr> beginMyForwardListSharedPtr)
 {
-	CreateMyForwardList();
-	return beginMyForwardList;
-}
-
-template <class T>
-shared_ptr<typename ListAlgorithms<T>::MyForwardListSharedPtr> ListAlgorithms<T>::GetBeginMyForwardListSharedPtr()
-{
-	CreateMyForwardListSharedPtr();
-	return beginMyForwardListSharedPtr;
-}
-
-template <class T>
-void ListAlgorithms<T>::DeleteMyForwardList()
-{
-	size_t count = 0;
-	while (beginMyForwardList)
+	if (!beginMyForwardListSharedPtr)
 	{
-		MyForwardList* tmpPointer = beginMyForwardList->next;
-		delete beginMyForwardList;
-		beginMyForwardList = tmpPointer;
-		count++;
+		return -1;
 	}
-	if (count)
+
+	auto beginTmp = beginMyForwardListSharedPtr;
+	int sum = beginTmp->value;
+
+	while (beginTmp->next)
 	{
-		cout << endl << "Delete " << count << " nodes in ~ListAlgorithms()" << endl;
+		sum += beginTmp->next->value;
+		beginTmp = beginTmp->next;
 	}
+	return sum;
 }
+

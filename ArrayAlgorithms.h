@@ -13,26 +13,23 @@ template <class T>
 class ArrayAlgorithms
 {
 public:
-	ArrayAlgorithms();
+	/*Constructors and destructors.*/
+
 
 private:
-
-	static const size_t arrSize = 10;
-
-	int arr[arrSize] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-	int* arrPointer = arr;
-
-	array<int, arrSize> arrCs = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-
-	vector<int> vec = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+	/*Private variables.*/
 
 
 public:
+	/*Public variables.*/
 
-	inline size_t GetArrSize() const { return arrSize; }
-	inline int* GetArr() const { return arrPointer; }
-	inline const vector<int>& GetVec() const { return vec; }
-	inline const array<int, arrSize>& GetArrCs() const { return arrCs; }
+
+private:
+	/*Private methods.*/
+
+
+public:
+	/*Public methods.*/
 
 	/*The sum of arr elements.*/
 	T Sum(T* arr, size_t arrSize);
@@ -48,11 +45,6 @@ public:
 
 
 };
-
-template <class T>
-ArrayAlgorithms<T>::ArrayAlgorithms()
-{
-}
 
 template <class T>
 int ArrayAlgorithms<T>::BinarySearch(T* arr, size_t arrSize, T searchedElement)

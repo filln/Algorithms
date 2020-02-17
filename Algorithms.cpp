@@ -7,26 +7,30 @@
 #include <iostream>
 #include "ArrayAlgorithms.h"
 #include "ListAlgorithms.h"
+#include "Containers.h"
 
 using namespace std;
 
 int main()
 {
+	/*Create containers.*/
+	Containers containersObject;
+
 	/*Array algorithms, variables and containers.*/
-	ArrayAlgorithms<int> ArrayAlgorithmsObject;
-	auto arrSize = ArrayAlgorithmsObject.GetArrSize();
-	auto arr = ArrayAlgorithmsObject.GetArr();
-	auto vec = ArrayAlgorithmsObject.GetVec();
+	ArrayAlgorithms<int> arrayAlgorithmsObject;
+	auto arrSize = containersObject.GetArrSize();
+	auto arr = containersObject.GetArr();
+	auto vec = containersObject.GetVec();
 
 	/*List algorithms, variables and containers.*/
-	ListAlgorithms<int> ListAlgorithmsObject;
-//	auto beginMyForwardList = ListAlgorithmsObject.GetBeginMyForwardList();
-	auto beginMyForwardList = ListAlgorithmsObject.GetBeginMyForwardListSharedPtr();
-	while (beginMyForwardList)
-	{
-		cout << beginMyForwardList->value;
-		beginMyForwardList = beginMyForwardList->next;
-	}
+	ListAlgorithms<int> listAlgorithmsObject;
+	auto beginMyForwardList = containersObject.GetBeginMyForwardListSharedPtr();
+	containersObject.PrintContainer(beginMyForwardList);
+	int result = listAlgorithmsObject.Sum(beginMyForwardList);
+	int resultRecur = listAlgorithmsObject.SumRecur(beginMyForwardList);
+	cout << endl << result << endl;
+	cout << endl << resultRecur << endl;
+
 
 
 	//    auto result = ArrayAlgorithmsObject.Sum(arr, arrSize);

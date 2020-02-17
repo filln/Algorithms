@@ -149,9 +149,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Algorithms.cpp" />
+    <ClCompile Include="Containers.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArrayAlgorithms.h" />
+    <ClInclude Include="Containers.h" />
     <ClInclude Include="ListAlgorithms.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
