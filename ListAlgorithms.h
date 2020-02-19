@@ -38,8 +38,29 @@ public:
 	int Sum(shared_ptr<Containers::MyForwardListSharedPtr> beginMyForwardListSharedPtr);
 	int SumRecur(shared_ptr<Containers::MyForwardListSharedPtr> beginMyForwardListSharedPtr);
 
+	shared_ptr<Containers::MyForwardListSharedPtr> Reverse(shared_ptr<Containers::MyForwardListSharedPtr> beginMyForwardListSharedPtr);
+
+
 
 };
+
+template <class T>
+shared_ptr<Containers::MyForwardListSharedPtr> ListAlgorithms<T>::Reverse(shared_ptr<Containers::MyForwardListSharedPtr> beginMyForwardListSharedPtr)
+{
+	shared_ptr<Containers::MyForwardListSharedPtr>
+		current = beginMyForwardListSharedPtr,
+		temp,
+		tempReverse = nullptr;
+	while (current)
+	{
+		temp = current->next;
+		current->next = tempReverse;
+		tempReverse = current;
+		current = temp;
+	}
+
+	return tempReverse;
+}
 
 template <class T>
 int ListAlgorithms<T>::SumRecur(shared_ptr<Containers::MyForwardListSharedPtr> beginMyForwardListSharedPtr)

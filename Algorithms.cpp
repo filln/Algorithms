@@ -21,24 +21,29 @@ int main()
 	auto arrSize = containersObject.GetArrSize();
 	auto arr = containersObject.GetArr();
 	auto vec = containersObject.GetVec();
-
-	/*List algorithms, variables and containers.*/
-	ListAlgorithms<int> listAlgorithmsObject;
-	auto beginMyForwardList = containersObject.GetBeginMyForwardListSharedPtr();
-	containersObject.PrintContainer(beginMyForwardList);
-	int result = listAlgorithmsObject.Sum(beginMyForwardList);
-	int resultRecur = listAlgorithmsObject.SumRecur(beginMyForwardList);
-	cout << endl << result << endl;
-	cout << endl << resultRecur << endl;
-
-
-
 	//    auto result = ArrayAlgorithmsObject.Sum(arr, arrSize);
 	//    auto result = ArrayAlgorithmsObject.SumRecur(arr, arrSize);
 	//    auto result = ArrayAlgorithmsObject.BinarySearch(arr, arrSize, 7);
 	//	  auto result = ArrayAlgorithmsObject.BinarySearch(vec, 8);
 
 	//	cout << *result;
+
+	/*List algorithms, variables and containers.*/
+	ListAlgorithms<int> listAlgorithmsObject;
+	auto beginMyForwardList = containersObject.GetBeginMyForwardListSharedPtr();
+	containersObject.PrintContainer(beginMyForwardList);
+	auto reverseBegin = listAlgorithmsObject.Reverse(beginMyForwardList);
+	containersObject.PrintContainer(reverseBegin);
+
+	/*
+	int result = listAlgorithmsObject.Sum(beginMyForwardList);
+	int resultRecur = listAlgorithmsObject.SumRecur(beginMyForwardList);
+	cout << endl << result << endl;
+	cout << endl << resultRecur << endl;
+	*/
+
+
+
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
