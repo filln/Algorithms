@@ -40,6 +40,9 @@ public:
 
 	shared_ptr<Containers::MyForwardListSharedPtr> Reverse(shared_ptr<Containers::MyForwardListSharedPtr> beginMyForwardListSharedPtr);
 
+	/*Search duplicates*/
+
+	/*Shuffle container.*/
 
 
 };

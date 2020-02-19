@@ -43,6 +43,10 @@ public:
 	/*Binary search with vector.*/
 	typename vector<T>::const_iterator BinarySearch(const vector<T>& container, T searchedElement);
 
+	/*Search duplicates*/
+
+	/*Shuffle container.*/
+
 
 };
 

@@ -100,7 +100,10 @@ void Containers::PrintContainer(T* arrPointer, size_t arrSize) const
 		return;
 	}
 	cout << endl;
-
+	for (size_t i = 0; i < arrSize; i++)
+	{
+		cout << arrPointer[i] << " ";
+	}
 	cout << endl;
 }
 
@@ -113,7 +116,10 @@ void Containers::PrintContainer(array<T, arrSize>& STLarr) const
 		return;
 	}
 	cout << endl;
-
+	for (T value : STLarr)
+	{
+		cout << value << " ";
+	}
 	cout << endl;
 }
 
@@ -126,7 +132,10 @@ void Containers::PrintContainer(vector<T>& vec) const
 		return;
 	}
 	cout << endl;
-
+	for (T value : vec)
+	{
+		cout << value << " ";
+	}
 	cout << endl;
 }
 
@@ -139,7 +148,10 @@ void Containers::PrintContainer(list<T>& STLList) const
 		return;
 	}
 	cout << endl;
-
+	for (T value : STLList)
+	{
+		cout << value << " ";
+	}
 	cout << endl;
 }
 
@@ -152,7 +164,10 @@ void Containers::PrintContainer(forward_list<T>& STLForwardList) const
 		return;
 	}
 	cout << endl;
-
+	for (T value : STLForwardList)
+	{
+		cout << value << " ";
+	}
 	cout << endl;
 }
 
