@@ -22,7 +22,11 @@ int main()
 	auto arr = containersObject.GetArr();
 	auto vec = containersObject.GetVec();
 	auto STLList = containersObject.GetSTLList();
-	containersObject.PrintContainer(arr, arrSize);
+
+	containersObject.PrintContainer(vec);
+	auto shuffleVec = arrayAlgorithmsObject.Shuffle(vec);
+	containersObject.PrintContainer(shuffleVec);
+
 	//    auto result = ArrayAlgorithmsObject.Sum(arr, arrSize);
 	//    auto result = ArrayAlgorithmsObject.SumRecur(arr, arrSize);
 	//    auto result = ArrayAlgorithmsObject.BinarySearch(arr, arrSize, 7);
@@ -31,7 +35,7 @@ int main()
 	//	cout << *result;
 
 	/*List algorithms, variables and containers.*/
-	ListAlgorithms<int> listAlgorithmsObject;
+	//ListAlgorithms<int> listAlgorithmsObject;
 
 	/*
 	auto beginMyForwardList = containersObject.GetBeginMyForwardListSharedPtr();

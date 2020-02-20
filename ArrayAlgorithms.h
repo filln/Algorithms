@@ -4,6 +4,7 @@
 
 #include <vector>
 #include <array>
+#include <random>
 
 using namespace std;
 
@@ -46,9 +47,42 @@ public:
 	/*Search duplicates*/
 
 	/*Shuffle container.*/
+	vector<T> Shuffle(const vector<T>& container);
 
 
 };
+
+template <class T>
+vector<T> ArrayAlgorithms<T>::Shuffle(const vector<T>& container)
+{
+	auto resultContainer = container;
+	size_t lastIndex = resultContainer.size() - 1;
+
+	random_device rd;
+//	mt19937 generator(rd());
+	default_random_engine generator(rd());
+
+	for (size_t index = 0; index <= lastIndex; index++)
+	{
+		uniform_int_distribution<int> distribution(0, (int)lastIndex);
+		size_t randomIndex = distribution(generator);
+
+		if (randomIndex == index)
+		{
+			if (randomIndex == lastIndex)
+			{
+				--randomIndex;
+			}
+			else
+			{
+				++randomIndex;
+			}
+		}
+		swap(resultContainer[index], resultContainer[randomIndex]);
+	}
+
+	return resultContainer;
+}
 
 template <class T>
 int ArrayAlgorithms<T>::BinarySearch(T* arr, size_t arrSize, T searchedElement)
