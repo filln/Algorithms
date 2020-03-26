@@ -49,8 +49,36 @@ public:
 	/*Shuffle container.*/
 	vector<T> Shuffle(const vector<T>& container);
 
+	/*Bubble sort.*/
+	vector<T> BubbleSort(const vector<T>& container);
+
 
 };
+
+template <class T>
+std::vector<T> ArrayAlgorithms<T>::BubbleSort(const vector<T>& container)
+{
+	auto resultContainer = container;
+	if (resultContainer.size() <= 1) return;
+
+	const auto firstConst = resultContainer.begin();
+	auto last = resultContainer.end() - 1;
+
+	bool isSwap = true;
+	while (isSwap)
+	{
+		isSwap = false;
+		for (auto first = firstConst; first < last; first++)
+		{
+			if (*first > * (first + 1))
+			{
+				swap(*first, *(first + 1));
+				isSwap = true;
+			}
+		}
+		last--;
+	}
+}
 
 template <class T>
 vector<T> ArrayAlgorithms<T>::Shuffle(const vector<T>& container)
@@ -59,7 +87,7 @@ vector<T> ArrayAlgorithms<T>::Shuffle(const vector<T>& container)
 	size_t lastIndex = resultContainer.size() - 1;
 
 	random_device rd;
-//	mt19937 generator(rd());
+	//	mt19937 generator(rd());
 	default_random_engine generator(rd());
 
 	for (size_t index = 0; index <= lastIndex; index++)
