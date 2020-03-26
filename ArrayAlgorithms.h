@@ -58,8 +58,9 @@ public:
 template <class T>
 std::vector<T> ArrayAlgorithms<T>::BubbleSort(const vector<T>& container)
 {
+	if (container.size() <= 1) return container;
+
 	auto resultContainer = container;
-	if (resultContainer.size() <= 1) return;
 
 	const auto firstConst = resultContainer.begin();
 	auto last = resultContainer.end() - 1;
@@ -78,6 +79,8 @@ std::vector<T> ArrayAlgorithms<T>::BubbleSort(const vector<T>& container)
 		}
 		last--;
 	}
+
+	return resultContainer;
 }
 
 template <class T>

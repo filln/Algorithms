@@ -26,6 +26,8 @@ int main()
 	containersObject.PrintContainer(vec);
 	auto shuffleVec = arrayAlgorithmsObject.Shuffle(vec);
 	containersObject.PrintContainer(shuffleVec);
+	auto sortVector = arrayAlgorithmsObject.BubbleSort(shuffleVec);
+	containersObject.PrintContainer(sortVector);
 
 	//    auto result = ArrayAlgorithmsObject.Sum(arr, arrSize);
 	//    auto result = ArrayAlgorithmsObject.SumRecur(arr, arrSize);
