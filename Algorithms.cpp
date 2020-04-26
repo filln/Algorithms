@@ -18,40 +18,14 @@ int main()
 
 	/*Array algorithms, variables and containers.*/
 	ArrayAlgorithms<int> arrayAlgorithmsObject;
+
 	auto arrSize = containersObject.GetArrSize();
 	auto arr = containersObject.GetArr();
 	auto vec = containersObject.GetVec();
 	auto STLList = containersObject.GetSTLList();
 
-	containersObject.PrintContainer(vec);
-	auto shuffleVec = arrayAlgorithmsObject.Shuffle(vec);
-	containersObject.PrintContainer(shuffleVec);
-	auto sortVector = arrayAlgorithmsObject.BubbleSort(shuffleVec);
-	containersObject.PrintContainer(sortVector);
-
-	//    auto result = ArrayAlgorithmsObject.Sum(arr, arrSize);
-	//    auto result = ArrayAlgorithmsObject.SumRecur(arr, arrSize);
-	//    auto result = ArrayAlgorithmsObject.BinarySearch(arr, arrSize, 7);
-	//	  auto result = ArrayAlgorithmsObject.BinarySearch(vec, 8);
-
-	//	cout << *result;
-
-	/*List algorithms, variables and containers.*/
-	//ListAlgorithms<int> listAlgorithmsObject;
-
-	/*
-	auto beginMyForwardList = containersObject.GetBeginMyForwardListSharedPtr();
-	containersObject.PrintContainer(beginMyForwardList);
-	auto reverseBegin = listAlgorithmsObject.Reverse(beginMyForwardList);
-	containersObject.PrintContainer(reverseBegin);
-
-	/*
-	int result = listAlgorithmsObject.Sum(beginMyForwardList);
-	int resultRecur = listAlgorithmsObject.SumRecur(beginMyForwardList);
-	cout << endl << result << endl;
-	cout << endl << resultRecur << endl;
-	*/
-
+	vector<bool> sieveVec = arrayAlgorithmsObject.SieveOfEratosthenes(100);
+	containersObject.PrintIndexesForSieveOfEratosthenes(sieveVec);
 
 
 }

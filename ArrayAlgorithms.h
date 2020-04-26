@@ -52,8 +52,31 @@ public:
 	/*Bubble sort.*/
 	vector<T> BubbleSort(const vector<T>& container);
 
+	/*Simple Sieve of Eratosthenes.*/
+	vector<bool> SieveOfEratosthenes(size_t count);
 
 };
+
+template <class T>
+std::vector<bool> ArrayAlgorithms<T>::SieveOfEratosthenes(size_t count)
+{
+	vector<bool> sieveVec(count, true);
+
+	size_t index;
+
+	for (index = 2; index < count; index++)
+	{
+		if (sieveVec[index])
+		{
+			for (size_t indexFirst = index; indexFirst * index < count; indexFirst++)
+			{
+				sieveVec[indexFirst * index] = false;
+			}
+		}
+	}
+
+	return sieveVec;
+}
 
 template <class T>
 std::vector<T> ArrayAlgorithms<T>::BubbleSort(const vector<T>& container)

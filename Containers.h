@@ -89,6 +89,9 @@ public:
 	void PrintContainer(forward_list<T>& STLForwardList) const;
 	void PrintContainer(shared_ptr<MyForwardListSharedPtr> beginMyForwardListSharedPtr) const;
 
+	/*Print indexes of containers for Sieve Of Eratosthenes.*/
+	template <typename T>
+	void PrintIndexesForSieveOfEratosthenes(vector<T>& vec) const;
 };
 
 template <typename T>
@@ -168,6 +171,27 @@ void Containers::PrintContainer(forward_list<T>& STLForwardList) const
 	{
 		cout << value << " ";
 	}
+	cout << endl;
+}
+
+template <typename T>
+void Containers::PrintIndexesForSieveOfEratosthenes(vector<T>& vec) const
+{
+	if (vec.empty())
+	{
+		cout << endl << "Container is empty." << endl;
+		return;
+	}
+	cout << endl;
+
+	for (size_t index = 2; index < vec.size(); index++)
+	{
+		if (vec[index])
+		{
+			cout << endl << index;
+		}
+	}
+
 	cout << endl;
 }
 
