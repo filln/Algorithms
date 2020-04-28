@@ -5,6 +5,7 @@
 #include <vector>
 #include <array>
 #include <random>
+#include <bitset>
 
 using namespace std;
 
@@ -52,13 +53,36 @@ public:
 	/*Bubble sort.*/
 	vector<T> BubbleSort(const vector<T>& container);
 
-	/*Simple Sieve of Eratosthenes.*/
+	/*Sedgewick's Sieve of Eratosthenes.*/
+	vector<bool> SieveOfEratosthenes_Sedgewick(size_t count);
+	/*Sieve of Eratosthenes.*/
 	vector<bool> SieveOfEratosthenes(size_t count);
-
 };
+
 
 template <class T>
 std::vector<bool> ArrayAlgorithms<T>::SieveOfEratosthenes(size_t count)
+{
+	vector<bool> sieveVec(count, true);
+
+	size_t index;
+
+	for (index = 2; index * index < count; index++)
+	{
+		if (sieveVec[index])
+		{
+			for (size_t index_ = index * index; index_ < count; index_ += index)
+			{
+				sieveVec[index_] = false;
+			}
+		}
+	}
+
+	return sieveVec;
+}
+
+template <class T>
+std::vector<bool> ArrayAlgorithms<T>::SieveOfEratosthenes_Sedgewick(size_t count)
 {
 	vector<bool> sieveVec(count, true);
 
@@ -68,9 +92,9 @@ std::vector<bool> ArrayAlgorithms<T>::SieveOfEratosthenes(size_t count)
 	{
 		if (sieveVec[index])
 		{
-			for (size_t indexFirst = index; indexFirst * index < count; indexFirst++)
+			for (size_t index_ = index; index_ * index < count; index_++)
 			{
-				sieveVec[indexFirst * index] = false;
+				sieveVec[index_ * index] = false;
 			}
 		}
 	}

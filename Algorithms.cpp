@@ -8,6 +8,7 @@
 #include "ArrayAlgorithms.h"
 #include "ListAlgorithms.h"
 #include "Containers.h"
+#include "BitSetAlgorithms.h"
 
 using namespace std;
 
@@ -19,13 +20,18 @@ int main()
 	/*Array algorithms, variables and containers.*/
 	ArrayAlgorithms<int> arrayAlgorithmsObject;
 
+
+
 	auto arrSize = containersObject.GetArrSize();
 	auto arr = containersObject.GetArr();
 	auto vec = containersObject.GetVec();
 	auto STLList = containersObject.GetSTLList();
 
-	vector<bool> sieveVec = arrayAlgorithmsObject.SieveOfEratosthenes(100);
-	containersObject.PrintIndexesForSieveOfEratosthenes(sieveVec);
+	//vector<bool> sieveVec = arrayAlgorithmsObject.SieveOfEratosthenes_Sedgewick(1000000);
+	//containersObject.PrintIndexesForSieveOfEratosthenes(sieveVec);
+	BitSetAlgorithms bitsetAlgorithms;
+	bitsetAlgorithms.SieveOfEratosthenes_Sedgewick(containersObject.GetMyBitset());
+	containersObject.PrintIndexesForSieveOfEratosthenes(containersObject.GetMyBitset());
 
 
 }

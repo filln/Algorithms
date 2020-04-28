@@ -4,6 +4,7 @@
 #include <array>
 #include <list>
 #include <forward_list>
+#include <bitset>
 #include <memory>
 #include <iostream>
 
@@ -49,6 +50,9 @@ private:
 	shared_ptr<MyForwardListSharedPtr> beginMyForwardListSharedPtr;
 	size_t sizeOfMyForwardList = 10;
 
+	static const size_t bitsetSize = 1000000;
+	bitset<bitsetSize> myBitset;
+
 public:
 	/*Public variables.*/
 
@@ -76,6 +80,9 @@ public:
 	shared_ptr<MyForwardListSharedPtr> GetBeginMyForwardListSharedPtr();
 	inline const size_t GetSizeOfMyForwardList() const { return sizeOfMyForwardList; }
 
+	inline bitset<bitsetSize>& GetMyBitset() { return myBitset; }
+	inline const size_t GetBitsetSize() const { return bitsetSize; }
+
 	/*Print containers.*/
 	template <typename T>
 	void PrintContainer(T* arrPointer, size_t arrSize) const;
@@ -92,6 +99,8 @@ public:
 	/*Print indexes of containers for Sieve Of Eratosthenes.*/
 	template <typename T>
 	void PrintIndexesForSieveOfEratosthenes(vector<T>& vec) const;
+	template <size_t N>
+	void PrintIndexesForSieveOfEratosthenes(bitset<N>& myBitset) const;
 };
 
 template <typename T>
@@ -187,6 +196,27 @@ void Containers::PrintIndexesForSieveOfEratosthenes(vector<T>& vec) const
 	for (size_t index = 2; index < vec.size(); index++)
 	{
 		if (vec[index])
+		{
+			cout << endl << index;
+		}
+	}
+
+	cout << endl;
+}
+
+template <size_t N>
+void Containers::PrintIndexesForSieveOfEratosthenes(bitset<N>& myBitset) const
+{
+	if (myBitset.size() == 0)
+	{
+		cout << endl << "Container is empty." << endl;
+		return;
+	}
+	cout << endl;
+
+	for (size_t index = 2; index < myBitset.size(); index++)
+	{
+		if (myBitset[index] != 0)
 		{
 			cout << endl << index;
 		}

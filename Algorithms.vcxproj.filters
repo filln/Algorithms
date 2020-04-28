@@ -32,5 +32,8 @@
     <ClInclude Include="Containers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="BitSetAlgorithms.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

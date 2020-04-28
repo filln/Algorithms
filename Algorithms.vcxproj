@@ -153,6 +153,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ArrayAlgorithms.h" />
+    <ClInclude Include="BitSetAlgorithms.h" />
     <ClInclude Include="Containers.h" />
     <ClInclude Include="ListAlgorithms.h" />
   </ItemGroup>
